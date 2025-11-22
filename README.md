@@ -7,9 +7,7 @@ This project is designed to be scalable, testable, and production-level — perf
 
 ## 🚀 Features
 
-- ➕ Add expense  
-- ✏️ Edit expense (optional)  
-- 🗑 Delete expense  
+- ➕ Add expense   
 - 📅 Monthly filtering  
 - 📊 Insights with Pie + Bar charts  
 - 🔄 Real-time updates (Flow)  
@@ -18,41 +16,6 @@ This project is designed to be scalable, testable, and production-level — perf
 - 🧱 Clean Architecture (MVVM + UseCases + Repository)  
 - 🌙 Dark mode support  
 
----
-
-## 🏛️ Architecture
-
-The app follows **Clean Architecture**:
-
-com.yourname.expensetracker
-│
-├── data
-│ ├── local
-│ │ ├── database
-│ │ ├── dao
-│ │ └── entity
-│ ├── repository
-│ │ └── impl
-│ └── mappers
-│
-├── domain
-│ ├── model
-│ ├── repository
-│ └── usecase
-│
-├── presentation
-│ ├── home
-│ ├── addexpense
-│ ├── insights
-│ ├── components
-│ └── navigation
-│
-├── di
-└── utils
-
-
-
----
 
 ## 🧪 Tech Stack
 
@@ -67,19 +30,11 @@ com.yourname.expensetracker
 - **Clean Architecture**
 - **Navigation Compose**
 
----
 
-## 💾 Database (Room)
+## 📱 App Screens
 
-Entity example:
-
-```kotlin
-@Entity(tableName = "expenses")
-data class ExpenseEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val title: String,
-    val amount: Double,
-    val category: String,
-    val date: Long
-)
+<p align="center">
+  <img src="screenshots/home_screen_image.png" height="500">
+  <img src="screenshots/add_expenses_image.png" height="500">
+  <img src="screenshots/chart.png" height="500">
+</p>
