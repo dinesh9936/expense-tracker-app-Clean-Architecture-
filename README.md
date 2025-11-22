@@ -33,7 +33,7 @@ This project is designed to be scalable, testable, and production-level — perf
 
 ## 📱 App Screens
 <p align="center">
-  <img src="screenshots/home_screen_image.jpg" width="720" style="margin-right: 20px;"  alt=""/>
-  <img src="screenshots/add_expenses_image.jpg" width="720"  alt=""/>
+  <img src="screenshots/home_screen_image.jpg" width="100" style="margin-right: 20px;"  alt=""/>
+  <img src="screenshots/add_expenses_image.jpg" width="100"  alt=""/>
 </p>
 
