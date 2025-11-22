@@ -32,9 +32,15 @@ This project is designed to be scalable, testable, and production-level — perf
 
 
 ## 📱 App Screens
-
 <p align="center">
-  <img src="screenshots/home_screen_image.png" height="500">
-  <img src="screenshots/add_expenses_image.png" height="500">
-  <img src="screenshots/chart.png" height="500">
+  <figure>
+    <img src="screenshots/home_screen_image.jpg" width="260">
+    <figcaption>Home Screen</figcaption>
+  </figure>
+
+  <figure>
+    <img src="screenshots/add_expenses_image.jpg" width="260">
+    <figcaption>Add Expense Screen</figcaption>
+  </figure>
 </p>
+
