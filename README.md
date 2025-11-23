@@ -36,5 +36,7 @@ This project is designed to be scalable, testable, and production-level — perf
   <img src="screenshots/homescreen_image.jpg" width="100" style="margin-right: 20px;"  alt=""/>
   <img src="screenshots/add_expenses_image.jpg" width="100"  alt=""/>
   <img src="screenshots/insights_screen_image.jpg" width="100"  alt=""/>
+  <img src="screenshots/delete_image.jpg" width="100"  alt=""/>
+  <img src="screenshots/editscreenshot_image.jpg" width="100"  alt=""/>
 </p>
 
