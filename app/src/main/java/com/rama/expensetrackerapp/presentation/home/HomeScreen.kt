@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rama.expensetrackerapp.R
+import com.rama.expensetrackerapp.domain.model.Expense
 import com.rama.expensetrackerapp.presentation.components.ExpenseItemCard
 import com.rama.expensetrackerapp.ui.theme.ExpenseTrackerAppTheme
 import java.time.Month
@@ -50,7 +51,8 @@ import java.util.Locale
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     onAddClick: () -> Unit,
-    onInsightsClick: () -> Unit
+    onInsightsClick: () -> Unit,
+    onExpenseItemClick: (Expense) -> Unit
 ) {
     val expenses = viewModel.monthlyExpenses.collectAsState(initial = emptyList())
     val total = viewModel.totalThisMonth.collectAsState(initial = 0.0)
@@ -128,7 +130,12 @@ fun HomeScreen(
 
             LazyColumn {
                 items(expenses.value) { expense ->
-                    ExpenseItemCard(expense)
+                    ExpenseItemCard(
+                        expense,
+                        onItemClick = {expense ->
+                            onExpenseItemClick.invoke(expense)
+                        }
+                    )
                 }
             }
         }

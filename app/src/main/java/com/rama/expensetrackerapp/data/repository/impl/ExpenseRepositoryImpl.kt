@@ -12,14 +12,21 @@ class ExpenseRepositoryImpl(
     private val dao: ExpenseDao
 ) : ExpenseRepository{
 
+    override suspend fun updateExpense(expense: Expense) {
+        dao.updateExpense(expense.toEntity())
+    }
+
     override suspend fun addExpense(expense: Expense) {
         dao.insertExpense(expense.toEntity())
     }
 
-    override suspend fun deleteExpense(expense: Expense) {
-        dao.deleteExpense(expense.toEntity())
+    override suspend fun deleteExpense(id: Int) {
+        dao.deleteExpense(id)
     }
 
+    override suspend fun getExpenseById(id: Int): Expense? {
+        return dao.getExpensesById(id)?.toDomain()
+    }
     override fun getExpensesByMonth(start: Long, end: Long): Flow<List<Expense>> {
         return dao.getExpensesByMonth(start, end).map { list ->
             list.map { it.toDomain() }

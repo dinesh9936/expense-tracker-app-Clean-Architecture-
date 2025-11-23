@@ -4,8 +4,10 @@ import com.rama.expensetrackerapp.domain.repository.ExpenseRepository
 import com.rama.expensetrackerapp.domain.usecase.AddExpenseUseCase
 import com.rama.expensetrackerapp.domain.usecase.DeleteExpenseUseCase
 import com.rama.expensetrackerapp.domain.usecase.ExpenseUseCases
+import com.rama.expensetrackerapp.domain.usecase.GetExpenseByIdUseCase
 import com.rama.expensetrackerapp.domain.usecase.GetExpensesByMonthUseCase
 import com.rama.expensetrackerapp.domain.usecase.GetMonthlyTotalUseCase
+import com.rama.expensetrackerapp.domain.usecase.UpdateExpenseUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +27,9 @@ object UseCaseModule {
             addExpenseUseCase = AddExpenseUseCase(repository),
             deleteExpenseUseCase = DeleteExpenseUseCase(repository),
             getExpensesByMonthUseCase = GetExpensesByMonthUseCase(repository),
-            getMonthlyTotalUseCase = GetMonthlyTotalUseCase(repository)
+            getMonthlyTotalUseCase = GetMonthlyTotalUseCase(repository),
+            updateExpenseUseCase = UpdateExpenseUseCase(repository),
+            getExpenseByIdUseCase = GetExpenseByIdUseCase(repository)
         )
     }
 }

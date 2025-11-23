@@ -10,6 +10,8 @@ This project is designed to be scalable, testable, and production-level — perf
 - Add expense (In Local DB - Room)  
 - Show list of expenses
 - Insights with PieCharts  
+- Delete Expense 
+- Edit Expense
  
 
 

@@ -70,11 +70,4 @@ class HomeViewModel @Inject constructor(
             _selectedMonth.value--
         }
     }
-
-    fun deleteExpense(expense: Expense) {
-        viewModelScope.launch {
-            useCases.deleteExpenseUseCase(expense)
-        }
-    }
-
 }

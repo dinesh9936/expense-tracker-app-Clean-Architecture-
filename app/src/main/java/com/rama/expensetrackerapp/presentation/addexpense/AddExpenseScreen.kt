@@ -19,19 +19,25 @@ import java.time.LocalDate
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddExpenseScreen(
+    id: Int,
     onBack: () -> Unit,
     viewModel: AddExpenseViewModel = hiltViewModel()
 ) {
-    // Local UI state
-    var title by remember { mutableStateOf("") }
-    var amount by remember { mutableStateOf("") }
-    var category by remember { mutableStateOf("Food") }
-    var date by remember { mutableStateOf(LocalDate.now()) }
+    // Use ViewModel states directly
+    var title by remember { viewModel.title }
+    var amount by remember { viewModel.amount }
+    var category by remember { viewModel.category }
+    var date by remember { viewModel.date }
+
+    val isEditMode = id != -1
+
+    // Dialog State
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Add Expense") },
+                title = { Text(if (isEditMode) "Edit Expense" else "Add Expense") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
@@ -80,7 +86,9 @@ fun AddExpenseScreen(
                     readOnly = true,
                     label = { Text("Category") },
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded) },
-                    modifier = Modifier.menuAnchor().fillMaxWidth()
+                    modifier = Modifier
+                        .menuAnchor()
+                        .fillMaxWidth()
                 )
 
                 ExposedDropdownMenu(
@@ -99,32 +107,63 @@ fun AddExpenseScreen(
                 }
             }
 
-            // Date Picker (simple version)
+            // Date Picker (placeholder)
             OutlinedButton(
-                onClick = { /* You can show date picker dialog later */ },
+                onClick = { /* TODO: Date Picker */ },
                 modifier = Modifier.fillMaxWidth()
             ) {
-               // Icon(Icons.Default.CalendarToday, contentDescription = null)
-                Spacer(Modifier.width(8.dp))
                 Text("Date: $date")
             }
 
-            // Save button
+            // Save/Update button
             Button(
-                onClick = {
-                    viewModel.saveExpense(
-                        title = title,
-                        amount = amount.toDoubleOrNull() ?: 0.0,
-                        category = category,
-                        date = date
-                    )
-                    onBack()
-                },
+                onClick = { viewModel.save { onBack() } },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = title.isNotEmpty() && amount.isNotEmpty()
             ) {
-                Text("Save Expense")
+                Text(if (isEditMode) "Update Expense" else "Save Expense")
+            }
+
+            // Delete Button Only in EDIT MODE
+            if (isEditMode) {
+                OutlinedButton(
+                    onClick = { showDeleteDialog = true },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Text("Delete Expense")
+                }
             }
         }
     }
+
+    // 🚨 Confirmation Dialog
+    if (showDeleteDialog) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+
+            title = { Text("Delete Expense") },
+            text = { Text("Are you sure you want to delete this expense? This action cannot be undone.") },
+
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDeleteDialog = false
+                        viewModel.delete { onBack() }
+                    }
+                ) {
+                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
 }
+
+
