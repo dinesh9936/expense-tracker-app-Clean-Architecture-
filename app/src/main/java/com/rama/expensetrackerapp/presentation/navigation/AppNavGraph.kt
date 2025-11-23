@@ -24,9 +24,13 @@ fun AppNavGraph(navController: NavHostController) {
             HomeScreen(
                 onAddClick = {
                     navController.navigate(Screen.AddExpense.route)
+                },
+                onInsightsClick = {
+                    navController.navigate(Screen.Insights.route)
                 }
             )
         }
+
 
         composable(Screen.AddExpense.route) {
             AddExpenseScreen(

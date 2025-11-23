@@ -3,6 +3,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rama.expensetrackerapp.domain.model.Expense
 import com.rama.expensetrackerapp.domain.usecase.ExpenseUseCases
 import com.rama.expensetrackerapp.utils.getMonthRangeFor
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.Month
 import java.time.format.TextStyle
@@ -69,7 +71,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    val selectedMonthName: String
-        get() = Month.of(_selectedMonth.value)
-            .getDisplayName(TextStyle.FULL, Locale.getDefault())
+    fun deleteExpense(expense: Expense) {
+        viewModelScope.launch {
+            useCases.deleteExpenseUseCase(expense)
+        }
+    }
+
 }

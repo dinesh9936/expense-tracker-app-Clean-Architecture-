@@ -33,9 +33,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.rama.expensetrackerapp.R
 import com.rama.expensetrackerapp.presentation.components.ExpenseItemCard
 import com.rama.expensetrackerapp.ui.theme.ExpenseTrackerAppTheme
 import java.time.Month
@@ -47,7 +49,8 @@ import java.util.Locale
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    onAddClick: () -> Unit
+    onAddClick: () -> Unit,
+    onInsightsClick: () -> Unit
 ) {
     val expenses = viewModel.monthlyExpenses.collectAsState(initial = emptyList())
     val total = viewModel.totalThisMonth.collectAsState(initial = 0.0)
@@ -55,8 +58,17 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Expense Tracker") }
+                title = { Text("Expense Tracker") },
+                actions = {
+                    IconButton(onClick = onInsightsClick) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_insight_icon),
+                            contentDescription = "Insights"
+                        )
+                    }
+                }
             )
+
         },
         floatingActionButton = {
             FloatingActionButton(onClick = onAddClick) {
@@ -123,11 +135,3 @@ fun HomeScreen(
     }
 }
 
- @RequiresApi(Build.VERSION_CODES.O)
- @Preview(showSystemUi = true, showBackground = true)
- @Composable
- fun HomeScreenPreview(){
-     ExpenseTrackerAppTheme {
-         HomeScreen(onAddClick = {})
-     }
- }
