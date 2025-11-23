@@ -7,14 +7,12 @@ This project is designed to be scalable, testable, and production-level — perf
 
 ## 🚀 Features
 
-- ➕ Add expense   
-- 📅 Monthly filtering  
-- 📊 Insights with Pie + Bar charts  
-- 🔄 Real-time updates (Flow)  
-- ⚡ Offline-first with Room  
-- 🎨 Jetpack Compose UI  
-- 🧱 Clean Architecture (MVVM + UseCases + Repository)  
-- 🌙 Dark mode support  
+- Add expense (In Local DB - Room)  
+- Show list of expenses
+- Insights with PieCharts  
+ 
+
+
 
 
 ## 🧪 Tech Stack
@@ -33,7 +31,8 @@ This project is designed to be scalable, testable, and production-level — perf
 
 ## 📱 App Screens
 <p align="center">
-  <img src="screenshots/home_screen_image.jpg" width="100" style="margin-right: 20px;"  alt=""/>
+  <img src="screenshots/homescreen_image.jpg" width="100" style="margin-right: 20px;"  alt=""/>
   <img src="screenshots/add_expenses_image.jpg" width="100"  alt=""/>
+  <img src="screenshots/insights_screen_image.jpg" width="100"  alt=""/>
 </p>
 
